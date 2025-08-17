@@ -93,11 +93,18 @@ mouths = [
     "character_images/Mouths/Neutral Mouth.png",
     "character_images/Mouths/Pouty Mouth.png"
 ]
+skin_shades = [
+    "character_images/Skin Shades/Layer 2.png"
+]
 
 
-
-def display_image(screen, img_path, position):
+def display_image(screen, img_path):
     image = pygame.image.load(img_path).convert_alpha()
-    screen.blit(image, position)
-    pygame.display.flip()
+    resized_image = pygame.transform.scale(image, (820, 756))  # Resize to fit
+
+    img_rect = resized_image.get_rect()
+    screen_rect = screen.get_rect()
+    img_rect.center = screen_rect.center  # Center the image on the screen  
+
+    screen.blit(resized_image, img_rect)
     return
